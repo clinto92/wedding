@@ -3,7 +3,7 @@ import { Box, Grid, Button } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import storage  from '../firebase'
+import storage  from '../../firebase'
 
 export default function HighlightsPhotos() {
   const [images, setImages] = React.useState(null);
@@ -48,9 +48,9 @@ export default function HighlightsPhotos() {
         <Button 
         variant="contained" 
         color="primary" 
-        onClick={()=>fileInput.current.click()}
+        onClick={handleChange}
       >
-        upload file
+         <CloudUploadIcon />
       </Button>
 
       <input 
@@ -62,7 +62,7 @@ export default function HighlightsPhotos() {
       </Grid>
       <ImageList variant="masonry" cols={3} gap={8}>
         {itemData.map((item) => (
-          <ImageListItem key={item.img}>
+          <ImageListItem key={item.img} onClick={() => console.log("clicked image list", item.img, item.title)}>
             <img
               src={`${item.img}?w=248&fit=crop&auto=format`}
               srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
